@@ -1,90 +1,499 @@
-diff
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Referentes para Puesta en Escena</title>
-  <style>
-    /* [todo tu CSS se mantiene igual, lo he recortado aquí por espacio] */
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referentes para Puesta en Escena - Presentación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            overflow: hidden;
+            color: #333;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1000px;
+            height: 85vh;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            overflow-y: auto;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #e74c3c;
+        }
+
+        .slide-header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide-header h2 {
+            font-size: 2rem;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .slide-header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .slide-content {
+            line-height: 1.8;
+        }
+
+        .slide-content h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide-content h3::before {
+            margin-right: 15px;
+            font-size: 1.3rem;
+        }
+
+        .biografia h3::before { content: "👤"; }
+        .resumen h3::before { content: "📝"; }
+        .aplicacion h3::before { content: "🎭"; }
+        .comision h3::before { content: "⚖️"; }
+        .obra h3::before { content: "🎵"; }
+        .recursos h3::before { content: "🎬"; }
+
+        .slide-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+            font-size: 1.1rem;
+        }
+
+        .slide-content ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .slide-content li {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #555;
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(231, 76, 60, 0.1);
+            border-radius: 10px;
+            border: 2px dashed #e74c3c;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+
+        .nav-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .slide-menu {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin: 2px;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+        .menu-btn:hover, .menu-btn.active {
+            background: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                width: 95%;
+                height: 90vh;
+                padding: 20px;
+            }
+            
+            .slide-header h1 {
+                font-size: 2rem;
+            }
+            
+            .slide-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .navigation {
+                bottom: 20px;
+                padding: 10px 15px;
+            }
+            
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+                min-width: 80px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="slideshow-container">
-    <!-- Aquí van todas tus diapositivas .slide -->
-    <!-- ... (no lo repito aquí por espacio, pero lo copié todo tal cual en la versión completa) -->
-  </div>
+    <div class="slideshow-container">
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <div class="slide-header">
+                <h1>Referentes para Puesta en Escena</h1>
+                <p>Transformación del silencio en acción</p>
+            </div>
+            <div class="slide-content" style="text-align: center; display: flex; flex-direction: column; justify-content: center; height: 60%;">
+                <div style="font-size: 4rem; margin-bottom: 30px;">🎭</div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 20px;">Dos referentes fundamentales:</h3>
+                <div style="display: flex; justify-content: space-around; margin-top: 40px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">✊</div>
+                        <h4>Audre Lorde</h4>
+                        <p style="font-style: italic;">La Transformación del Silencio</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">🕊️</div>
+                        <h4>Develaciones</h4>
+                        <p style="font-style: italic;">Un Canto a los Cuatro Vientos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <div class="slide-counter">
-    <span id="current-slide">1</span> / <span id="total-slides">8</span>
-  </div>
+        <!-- Slide 2: Biografía Audre Lorde -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Audre Lorde</h2>
+                <p>Biografía de la Autora</p>
+            </div>
+            <div class="slide-content biografia">
+                <h3>👤 Vida y Obra</h3>
+                <p><strong>Audre Lorde (1934-1992)</strong> fue una escritora, poeta, activista y teórica feminista afroamericana. Nacida en Nueva York de padres caribeños, se convirtió en una de las voces más poderosas del feminismo interseccional del siglo XX.</p>
+                
+                <div class="quote">
+                    "Negra, lesbiana, madre, guerrera, poeta"<br>
+                    <small>- Autodefinición de Audre Lorde</small>
+                </div>
+                
+                <p>Lorde entrelazó estas identidades en su obra para crear un discurso revolucionario sobre la diferencia, el poder y la resistencia. Su trabajo abordó temas de racismo, sexismo, homofobia y clasismo, siempre desde una perspectiva personal y política.</p>
+                
+                <h3>📚 Obras Principales</h3>
+                <ul>
+                    <li><strong>"La hermana,la extranjera" (1984)</strong> - Colección de ensayos y discursos</li>
+                    <li><strong>"Zami: Una nueva forma de escribir mi nombre" (1982)</strong> - Biomitografía</li>
+                    <li><strong>Múltiples poemarios</strong> que la establecieron como figura central en la literatura feminista</li>
+                </ul>
+            </div>
+        </div>
 
-  <div class="slide-menu">
-    <button class="menu-btn active" onclick="goToSlide(0)">Portada</button>
-    <button class="menu-btn" onclick="goToSlide(1)">Biografía Lorde</button>
-    <button class="menu-btn" onclick="goToSlide(2)">Texto Lorde</button>
-    <button class="menu-btn" onclick="goToSlide(3)">Aplicación Lorde</button>
-    <button class="menu-btn" onclick="goToSlide(4)">Comisión Verdad</button>
-    <button class="menu-btn" onclick="goToSlide(5)">Revelaciones</button>
-    <button class="menu-btn" onclick="goToSlide(6)">Proyecciones</button>
-    <button class="menu-btn" onclick="goToSlide(7)">Efectos Técnicos</button>
-  </div>
+        <!-- Slide 3: Resumen del texto de Lorde -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>La Transformación del Silencio</h2>
+                <p>en Lenguaje y Acción</p>
+            </div>
+            <div class="slide-content resumen">
+                <h3>📝 Resumen del Texto</h3>
+                <p>Este ensayo fundamental explora cómo el silencio puede ser tanto una forma de opresión como de supervivencia, pero también cómo debe ser transformado en acción política.</p>
+                
+                <div class="quote">
+                    "Tu silencio no te protegerá... pero tu voz sí puede transformar el mundo"
+                </div>
+                
+                <h3>💡 Ideas Centrales</h3>
+                <ul>
+                    <li>El <strong>silencio impuesto</strong> es una herramienta de opresión que mantiene las estructuras de poder</li>
+                    <li><strong>Romper el silencio</strong> requiere coraje, pero es esencial para la liberación personal y colectiva</li>
+                    <li>La <strong>palabra hablada y escrita</strong> se convierte en acción cuando surge de la verdad personal</li>
+                    <li>Las <strong>diferencias</strong> entre las personas deben ser celebradas, no silenciadas</li>
+                    <li>El <strong>miedo al juicio</strong> no debe impedir la expresión auténtica</li>
+                </ul>
+            </div>
+        </div>
 
-  <div class="navigation">
-    <button class="nav-btn" id="prev-btn" onclick="previousSlide()">← Anterior</button>
-    <button class="nav-btn" id="next-btn" onclick="nextSlide()">Siguiente →</button>
-  </div>
+        <!-- Slide 4: Aplicación escénica Lorde -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Aplicación Escénica</h2>
+                <p>Cartas Manuscritas</p>
+            </div>
+            <div class="slide-content aplicacion">
+                <div class="highlight">
+                    <h3>🎭 Concepto Principal</h3>
+                    <p>Transformar el silencio en voz colectiva a través de cartas escritas a mano que se leen simultáneamente.</p>
+                </div>
+                
+                <h3>✍️ Recursos Escénicos Propuestos</h3>
+                <ul>
+                    <li><strong>Escritura en vivo:</strong> Los interpretes escriben cartas a mano durante la puesta en escena</li>
+                    <li><strong>Lectura coral:</strong> Las cartas se leen simultáneamente, creando capas de voces que emergen del silencio</li>
+                    <li><strong>Gradaciones vocales:</strong> Algunas voces susurran, otras hablan, otras gritan, representando diferentes niveles de ruptura del silencio</li>
+                    <li><strong>Repetición de palabras clave:</strong> Términos como "miedo", "verdad", "silencio", "voz" se repiten creando un mantra colectivo</li>
+                    <li><strong>Intercambio de cartas:</strong> Los interpretes intercambian sus escritos, leyendo las palabras de otros como propias</li>
+                </ul>
+            </div>
+        </div>
 
-  <script>
-    let currentSlide = 0;
-    let slides, totalSlides, menuButtons;
+        <!-- Slide 5: Qué es la Comisión de la Verdad -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Comisión de la Verdad</h2>
+                <p>Contexto y Propósito</p>
+            </div>
+            <div class="slide-content comision">
+                <h3>⚖️ ¿Qué es la Comisión de la Verdad?</h3>
+                <p>La <strong>Comisión para el Esclarecimiento de la Verdad, la Convivencia y la No Repetición (CEV)</strong> fue un organismo extrajudicial creado en Colombia tras el Acuerdo de Paz de 2016 entre el gobierno y las FARC-EP.</p>
+                
+                <h3>🎯 Objetivos Principales</h3>
+                <ul>
+                    <li><strong>Esclarecer</strong> los patrones de violencia durante el conflicto armado interno</li>
+                    <li><strong>Promover</strong> el reconocimiento de las víctimas y sus derechos</li>
+                    <li><strong>Fomentar</strong> la convivencia en los territorios</li>
+                    <li><strong>Hacer recomendaciones</strong> para la no repetición</li>
+                </ul>
+                
+                <div class="highlight">
+                    <p><strong>Período de funcionamiento:</strong> 2018-2022</p>
+                    <p>Recopiló testimonios de víctimas, victimarios, instituciones y sociedad civil para construir una narrativa integral del conflicto que vivió Colombia durante más de cinco décadas.</p>
+                </div>
+            </div>
+        </div>
 
-    window.addEventListener('DOMContentLoaded', () => {
-      slides = document.querySelectorAll('.slide');
-      totalSlides = slides.length;
-      menuButtons = document.querySelectorAll('.menu-btn');
+        <!-- Slide 6: Resumen de Develaciones -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>develaciones</h2>
+                <p>Un Canto a los Cuatro Vientos</p>
+            </div>
+            <div class="slide-content obra">
+                <h3>🎵 Resumen de la Obra</h3>
+                <p><strong>"Develaciones"</strong> es una obra teatral creada a partir de los testimonios recopilados por la Comisión de la Verdad. Representa un ejercicio de memoria colectiva que transforma el dolor en arte y la verdad en sanación.</p>
+                
+                <div class="quote">
+                    "Imprimen en sus voces y movimientos las frustraciones"
+                </div>
+                
+                <h3>🌟Involucrados</h3>
+                <ul>
+                    <li><strong>MAPAFO:</strong> Madres de falsos positivos</li>
+                    <li><strong>SANKOFA:</strong> Formadores y creadores de danza</li>
+                    <li><strong>Fundación Saüyee’pia Wayuu:</strong> Organizacion cultural con sede en la guajira</li>
+                    <li><strong>Guardia indigena nacional:</strong> Buscan la protección de los pueblos indigenas </li>
+                    <li><strong>Tambores de cabildo:</strong> Corporación que difunde programas de formación</li>
+                </ul>
+            </div>
+        </div>
 
-      document.getElementById('total-slides').textContent = totalSlides;
+        <!-- Slide 7: Recursos de proyecciones -->
+        <div class="slide">
+            <div class="slide-header">
+                <h2>Recursos Escénicos</h2>
+                <p>Proyecciones</p>
+            </div>
+            <div class="slide-content recursos">
+                <div class="highlight">
+                    <h3>🎬 Concepto Principal</h3>
+                    <p>Utilizar proyecciones para crear un espacio inmersivo que conecte lo íntimo con lo territorial.</p>
+                </div>
+                
+                <h3>💡 Ideas para Proyecciones</h3>
+                <ul>
+                    <li><strong>Mapas vivientes:</strong> Proyección de mapas de Colombia que se transforman mostrando rutas de desplazamiento y territorios en conflicto</li>
+                    <li><strong>Rostros testimoniales:</strong> Fotografías de víctimas que aparecen y desaparecen como presencias espectrales</li>
+                    <li><strong>Paisajes heridos:</strong> Imágenes de territorios antes y después del conflicto</li>
+                    <li><strong>Escritura en movimiento:</strong> Testimonios escritos que se escriben y borran en tiempo real</li>
+                </ul>
+            </div>
+        </div>
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">8</span>
+    </div>
 
-      function showSlide(n) {
-        slides[currentSlide].classList.remove('active');
-        menuButtons[currentSlide].classList.remove('active');
+    <div class="slide-menu">
+        <button class="menu-btn active" onclick="goToSlide(0)">Portada</button>
+        <button class="menu-btn" onclick="goToSlide(1)">Biografía Lorde</button>
+        <button class="menu-btn" onclick="goToSlide(2)">Texto Lorde</button>
+        <button class="menu-btn" onclick="goToSlide(3)">Aplicación Lorde</button>
+        <button class="menu-btn" onclick="goToSlide(4)">Comisión Verdad</button>
+        <button class="menu-btn" onclick="goToSlide(5)">Develaciones</button>
+        <button class="menu-btn" onclick="goToSlide(6)">Proyecciones</button>
+    </div>
 
-        currentSlide = n;
-        if (currentSlide >= totalSlides) currentSlide = 0;
-        if (currentSlide < 0) currentSlide = totalSlides - 1;
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn" onclick="previousSlide()">← Anterior</button>
+        <button class="nav-btn" id="next-btn" onclick="nextSlide()">Siguiente →</button>
+    </div>
 
-        slides[currentSlide].classList.add('active');
-        menuButtons[currentSlide].classList.add('active');
-        document.getElementById('current-slide').textContent = currentSlide + 1;
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const menuButtons = document.querySelectorAll('.menu-btn');
 
-        document.getElementById('prev-btn').disabled = currentSlide === 0;
-        document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
-      }
+        document.getElementById('total-slides').textContent = totalSlides;
 
-      window.nextSlide = () => {
-        if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
-      };
-
-      window.previousSlide = () => {
-        if (currentSlide > 0) showSlide(currentSlide - 1);
-      };
-
-      window.goToSlide = (n) => {
-        showSlide(n);
-      };
-
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowRight' || e.key === ' ') {
-          nextSlide();
-        } else if (e.key === 'ArrowLeft') {
-          previousSlide();
-        } else if (e.key >= '1' && e.key <= '8') {
-          goToSlide(parseInt(e.key) - 1);
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            menuButtons[currentSlide].classList.remove('active');
+            
+            currentSlide = n;
+            
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            
+            slides[currentSlide].classList.add('active');
+            menuButtons[currentSlide].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            
+            // Actualizar botones de navegación
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = currentSlide === totalSlides - 1;
         }
-      });
-html
-      showSlide(0);
-    });
-  </script>
-</body>
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function goToSlide(n) {
+            showSlide(n);
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            } else if (e.key >= '1' && e.key <= '8') {
+                goToSlide(parseInt(e.key) - 1);
+            }
+        });
+
+        // Inicializar
+        showSlide(0);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95fee1db7436c288',t:'MTc1MjY0MTQ2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
