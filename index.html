@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>EPK | María Victoria Aldana Donoso</title>
 
 <style>
@@ -10,110 +13,186 @@
 body{
 margin:0;
 font-family: 'Georgia', serif;
-background:#f4efe9;
-color:#2e1a16;
+background:#f3ede8;
+color:#2e1b18;
 }
 
-/* PORTADA */
+/* HERO */
 
 .hero{
-height:90vh;
-background-image:url("foto1.jpg");
+
+height:100vh;
+background:url("foto1.jpg");
 background-size:cover;
 background-position:center;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
+
+}
+
+.hero-text{
+
+background:rgba(107,15,26,0.75);
+padding:40px;
+border-radius:12px;
 color:white;
+
 }
 
 .hero h1{
-font-size:50px;
-background:rgba(107,15,26,0.7);
-padding:20px;
-border-radius:10px;
+
+font-size:55px;
+margin:0;
+
+}
+
+.hero p{
+
+font-size:22px;
+
 }
 
 /* MENU */
 
 nav{
+
 background:#4b2e2e;
 padding:15px;
 text-align:center;
+
 }
 
 nav a{
+
 color:white;
-margin:15px;
+margin:20px;
 text-decoration:none;
 font-size:18px;
+letter-spacing:1px;
+
+}
+
+nav a:hover{
+
+color:#d8b4a0;
+
 }
 
 /* SECCIONES */
 
 section{
-max-width:900px;
+
+max-width:1000px;
 margin:auto;
-padding:60px 20px;
+padding:70px 20px;
+
 }
 
 h2{
+
+font-size:34px;
 color:#6b0f1a;
-border-bottom:2px solid #6b0f1a;
+border-bottom:3px solid #6b0f1a;
 padding-bottom:10px;
+
 }
 
 /* BIO */
 
 .bio{
+
+font-size:19px;
+line-height:1.8;
+
+}
+
+/* TRAYECTORIA */
+
+.trayectoria ul{
+
 font-size:18px;
-line-height:1.7;
+line-height:1.9;
+
 }
 
 /* GALERIA */
 
 .galeria{
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-margin-top:30px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+margin-top:40px;
+
 }
 
 .galeria img{
+
 width:100%;
-border-radius:10px;
-transition:0.4s;
+border-radius:12px;
+transition:0.5s;
+box-shadow:0 8px 20px rgba(0,0,0,0.25);
+
 }
 
 .galeria img:hover{
+
 transform:scale(1.05);
+
 }
 
 /* CONTACTO */
 
 .contacto{
+
 background:#4b2e2e;
 color:white;
 text-align:center;
-padding:50px;
+padding:60px;
+
 }
 
+.contacto h2{
+
+color:white;
+border:none;
+
+}
+
+/* FOOTER */
+
 footer{
+
 background:#6b0f1a;
 color:white;
 text-align:center;
-padding:15px;
+padding:18px;
+
 }
 
 </style>
+
 </head>
 
 <body>
 
+<!-- PORTADA -->
+
 <div class="hero">
-<h1>María Victoria Aldana Donoso<br>Bailarina & Creadora</h1>
+
+<div class="hero-text">
+
+<h1>María Victoria Aldana Donoso</h1>
+
+<p>Bailarina · Creadora · Danza Contemporánea</p>
+
 </div>
+
+</div>
+
+<!-- MENU -->
 
 <nav>
 
@@ -124,6 +203,8 @@ padding:15px;
 
 </nav>
 
+<!-- BIO -->
+
 <section id="bio">
 
 <h2>Biografía</h2>
@@ -131,46 +212,50 @@ padding:15px;
 <p class="bio">
 
 María Victoria Aldana Donoso es una bailarina y creadora de 22 años. 
-Inició su camino en 2018 en la danza contemporánea y el ballet, consolidando 
-rápidamente su base clásica al obtener la certificación del ABT 
-(American Ballet Theatre) Nivel 2 en 2020.
+Inició su camino en 2018 con la danza contemporánea y el ballet, 
+consolidando rápidamente su base clásica al obtener la certificación 
+ABT (American Ballet Theatre) Nivel 2 en 2020.
 
 </p>
 
 <p class="bio">
 
-Su búsqueda artística la ha llevado a explorar un espectro ecléctico 
-de estilos, desde el Vogue y el Jazz, hasta la riqueza cultural de las 
-danzas árabes, ritmos latinos y la danza afro-moderna.
+Su búsqueda artística explora un espectro ecléctico de estilos que 
+incluye Vogue, Jazz, danzas árabes, ritmos latinos y danza afro-moderna, 
+integrando diversas influencias corporales y culturales.
 
 </p>
 
 <p class="bio">
 
-Actualmente profesionaliza su visión artística en la carrera de 
+Actualmente desarrolla su formación profesional en la carrera de 
 Danza y Dirección Coreográfica en CENDA.
 
 </p>
 
 </section>
 
-<section id="trayectoria">
+<!-- TRAYECTORIA -->
+
+<section id="trayectoria" class="trayectoria">
 
 <h2>Trayectoria</h2>
 
 <ul>
 
-<li>Certificación ABT (American Ballet Theatre) Nivel 2 – 2020</li>
+<li>Certificación ABT (American Ballet Theatre) Nivel 2 — 2020</li>
 
-<li>Festival Transitar el Traslado – Danzona</li>
+<li>Festival Transitar el Traslado — Danzona</li>
 
-<li>Festival Internacional de Danza Ciudad de la Luna – 2025</li>
+<li>Festival Internacional de Danza Ciudad de la Luna — 2025</li>
 
-<li>Formación en danza contemporánea, ballet, vogue, jazz, danzas árabes, ritmos latinos y danza afro-moderna</li>
+<li>Investigación y creación en danza contemporánea</li>
 
 </ul>
 
 </section>
+
+<!-- GALERIA -->
 
 <section id="galeria">
 
@@ -187,13 +272,15 @@ Danza y Dirección Coreográfica en CENDA.
 
 </section>
 
+<!-- CONTACTO -->
+
 <section id="contacto" class="contacto">
 
 <h2>Contacto</h2>
 
 <p>Email: mariavictorialdanad@gmail.com</p>
 
-<p>Teléfono: 3013125245</p>
+<p>Tel: 3013125245</p>
 
 </section>
 
@@ -204,4 +291,6 @@ EPK — María Victoria Aldana Donoso
 </footer>
 
 </body>
+
 </html>
+
